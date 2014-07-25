@@ -1,5 +1,5 @@
 /etc/init.d/mysql start
 /etc/init.d/apache2 start
 wget -q http://127.0.0.1/grase/radmin/cron.php -O -
-mysql -u root -pgrasesql radmin < /root/demo_password.sql
+mysql -u root -pgrasesql radmin < /root/demo.sql
 /bin/bash
