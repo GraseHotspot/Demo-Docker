@@ -1,0 +1,29 @@
+# Password of the database's administrative user:
+grase-www-portal	grase-www-portal/mysql/admin-pass	password	grasesql
+# MySQL application password for grase-conf-freeradius:
+#grase-conf-freeradius	grase-conf-freeradius/mysql/app-pass	password	
+# MySQL application password for grase-www-portal:
+#grase-www-portal	grase-www-portal/mysql/app-pass	password	
+# Password of the database's administrative user:
+grase-conf-freeradius	grase-conf-freeradius/mysql/admin-pass	password	grasesql
+#  username for grase-conf-freeradius:
+grase-conf-freeradius	grase-conf-freeradius/db/app-user	string	radius
+# Configure database for grase-www-portal with dbconfig-common?
+grase-www-portal	grase-www-portal/dbconfig-install	boolean	true
+# Configure database for grase-conf-freeradius with dbconfig-common?
+grase-conf-freeradius	grase-conf-freeradius/dbconfig-install	boolean	true
+#  database name for grase-www-portal:
+grase-www-portal	grase-www-portal/db/dbname	string	radmin
+#  username for grase-www-portal:
+grase-www-portal	grase-www-portal/db/app-user	string	radmin
+#  database name for grase-conf-freeradius:
+grase-conf-freeradius	grase-conf-freeradius/db/dbname	string	radius
+# New password for the MySQL "root" user:
+mysql-server-5.5	mysql-server/root_password	password	grasesql
+# Repeat password for the MySQL "root" user:
+mysql-server-5.5        mysql-server/root_password_again        password    grasesql
+# Choices: unix socket, tcp/ip
+# Name of the database's administrative user:
+grase-www-portal	grase-www-portal/mysql/admin-user	string	root
+# Name of the database's administrative user:
+grase-conf-freeradius	grase-conf-freeradius/mysql/admin-user	string	root
