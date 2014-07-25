@@ -1,0 +1,12 @@
+#!/bin/bash
+# Get current latest image
+IMAGE=$(docker images | grep demo | grep latest | awk '{ print $3 }')
+# Stop all running containers with that image
+CID=$(docker ps -a | grep grasehotspot/demo:latest | awk '{ print $1}')
+docker kill $CID
+# Remove that image
+docker rmi -f $IMAGE
+
+# Build new image
+docker build -t grasehotspot/demo:latest .
+#docker run -d -t -p 80:80 grasehotspot/demo:latest
