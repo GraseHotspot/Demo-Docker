@@ -8,5 +8,5 @@ docker kill $CID
 docker rmi -f $IMAGE
 
 # Build new image
-docker build -t grasehotspot/demo:latest .
+docker build --no-cache=true -t grasehotspot/demo:latest .
 #docker run -d -t -p 80:80 grasehotspot/demo:latest
