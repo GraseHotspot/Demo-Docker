@@ -32,6 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal
 
 COPY start /root/
+COPY demo_password.sql /root/
 
 CMD /root/start
 
