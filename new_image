@@ -10,3 +10,4 @@ docker rmi -f $IMAGE
 # Build new image
 docker build --no-cache=true -t grasehotspot/demo:latest .
 #docker run -d -t -p 80:80 grasehotspot/demo:latest
+./new_container
