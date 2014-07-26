@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/bin/bash 
 # Get container ID
 CID=$(docker ps | grep demo:latest |awk '{print $1}'  )
-# Stop and delete container
-docker kill $CID
-docker rm $CID
+if [ "x" != "x$CID" ]; then
+    # Stop and delete container
+    docker kill $CID 2>&1 >/dev/null
+    docker rm $CID 2>&1 >/dev/null
+fi
 # Start new container
 docker run -d -t -p 80:80 grasehotspot/demo:latest

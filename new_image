@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 # Get current latest image
 IMAGE=$(docker images | grep demo | grep latest | awk '{ print $3 }')
 # Stop all running containers with that image
@@ -13,7 +13,7 @@ NEWIMAGEID=$(echo "$NEWIMAGE"|tail -n 1 | awk '{print $3}')
 #docker run -d -t -p 80:80 grasehotspot/demo:latest
 
 # Remove the old image once the new one is built
-if [ "x$IMAGE" != "x$NEWIAMGEID" ]; then docker rmi -f $IMAGE; fi
+if [ "x$IMAGE" != "x$NEWIMAGEID" ]; then docker rmi -f $IMAGE; fi
 
 docker tag $NEWIMAGEID grasehotspot/demo:latest
 
