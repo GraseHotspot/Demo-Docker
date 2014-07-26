@@ -1,7 +1,7 @@
 FROM debian:wheezy
 MAINTAINER Tim White
 
-COPY sources.list /etc/apt/sources.list
+#COPY sources.list /etc/apt/sources.list
 
 
 #RUN apt-get update; apt-get install -y -q netcat-openbsd
@@ -15,7 +15,7 @@ COPY sources.list /etc/apt/sources.list
 #  || echo "No squid-deb-proxy detected on docker host"
 
 ## We know we run the proxy, so hard code it
-RUN /sbin/ip route | awk '/default/ { print "Acquire::http::Proxy \"http://"$3":8000\";" }' > /etc/apt/apt.conf.d/30proxy
+#RUN /sbin/ip route | awk '/default/ { print "Acquire::http::Proxy \"http://"$3":8000\";" }' > /etc/apt/apt.conf.d/30proxy
 
 # Some Environment Variables
 #ENV    DEBIAN_FRONTEND noninteractive
