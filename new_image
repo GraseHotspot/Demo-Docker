@@ -3,8 +3,8 @@
 IMAGE=$(docker images | grep demo | grep latest | awk '{ print $3 }')
 # Stop all running containers with that image
 CID=$(docker ps -a | grep grasehotspot/demo:latest | awk '{ print $1}')
-docker kill $CID
-docker rm $CID
+docker kill $CID >/dev/null 2>&1
+docker rm $CID >/dev/null 2>&1
 
 # Build new image
 NEWIMAGE=$(docker build -t grasehotspot/demo:latest .)
