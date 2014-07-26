@@ -31,6 +31,7 @@ RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 
 ADD http://nightly.packages.grasehotspot.org/dists/purewhite/Release /tmp/
+RUN apt-get update
 RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal
 
 COPY start /root/
