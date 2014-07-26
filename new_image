@@ -5,10 +5,12 @@ IMAGE=$(docker images | grep demo | grep latest | awk '{ print $3 }')
 CID=$(docker ps -a | grep grasehotspot/demo:latest | awk '{ print $1}')
 docker kill $CID
 docker rm $CID
-# Remove that image
-docker rmi -f $IMAGE
 
 # Build new image
 docker build -t grasehotspot/demo:latest .
 #docker run -d -t -p 80:80 grasehotspot/demo:latest
+
+# Remove the old image once the new one is built
+docker rmi -f $IMAGE
+
 ./new_container
