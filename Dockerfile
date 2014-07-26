@@ -29,6 +29,8 @@ RUN sed -i 's/\/packages/\/nightly.packages/' /etc/apt/sources.list.d/grasehotsp
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
+
+ADD http://nightly.packages.grasehotspot.org/dists/purewhite/Release /tmp/
 RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal
 
 COPY start /root/
