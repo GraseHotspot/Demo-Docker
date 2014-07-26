@@ -33,6 +33,7 @@ RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y
 
 COPY start /root/
 COPY demo.sql /root/
+COPY overflowdata.sql /root/
 
 CMD /root/start
 
