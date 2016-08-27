@@ -1,5 +1,7 @@
 /etc/init.d/mysql start
+#/usr/bin/mysqld_safe &
 /etc/init.d/apache2 start
+sleep 2
 wget -q http://127.0.0.1/grase/radmin/cron.php -O -
 mysql -u root -pgrasesql radmin < /root/demo.sql
 mysql -u root -pgrasesql radius < /root/overflowdata.sql

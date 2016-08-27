@@ -7,4 +7,5 @@ if [ "x" != "x$CID" ]; then
     docker rm $CID >/dev/null 2>&1
 fi
 # Start new container
-docker run -d -t -p 80:80 grasehotspot/demo:latest
+#docker run -d -t -p 80:80 grasehotspot/demo:latest
+docker run --restart=always -d -t -e VIRTUAL_HOST=demo.grasehotspot.org grasehotspot/demo:latest
