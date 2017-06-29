@@ -20,11 +20,11 @@ MAINTAINER Tim White
 # Some Environment Variables
 #ENV    DEBIAN_FRONTEND noninteractive
 
-COPY grase-repo_1.5_all.deb /tmp/
+COPY grase-repo_1.7_all.deb /tmp/
 COPY graseselections /tmp/
 
 RUN debconf-set-selections /tmp/graseselections
-RUN dpkg -i /tmp/grase-repo_1.5_all.deb
+RUN dpkg -i /tmp/grase-repo_1.7_all.deb
 RUN sed -i 's/\/packages/\/nightly.packages/' /etc/apt/sources.list.d/grasehotspot.list
 #RUN echo deb http://localpackages/$GRASERELEASE/ purewhite main > /etc/apt/sources.list.d/grasehotspot.list
 
@@ -34,6 +34,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server less vim
 ADD http://nightly.packages.grasehotspot.org/dists/purewhite/Release /tmp/
 RUN apt-get update
 RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal grase-conf-freeradius coova-chilli
+
+RUN echo 'RedirectMatch ^/$ https://demo.grasehotspot.org/grase/radmin/' > /etc/apache2/conf.d/index-redirect.conf
 
 COPY start /root/
 COPY demo.sql /root/
