@@ -1,20 +1,13 @@
-#!/bin/bash 
-# Get current latest image
-IMAGE=$(docker images | grep demo | grep latest | awk '{ print $3 }')
+#!/bin/bash
 # Stop all running containers with that image
 CID=$(docker ps -a | grep grasehotspot/demo:latest | awk '{ print $1}')
 docker kill $CID >/dev/null 2>&1
 docker rm $CID >/dev/null 2>&1
 
 # Build new image
-NEWIMAGE=$(docker build -t grasehotspot/demo:latest .)
-echo "$NEWIMAGE"
-NEWIMAGEID=$(echo "$NEWIMAGE"|tail -n 1 | awk '{print $3}')
-#docker run -d -t -p 80:80 grasehotspot/demo:latest
+docker build -t grasehotspot/demo:latest .
 
-# Remove the old image once the new one is built
-if [ "x$IMAGE" != "x$NEWIMAGEID" ]; then docker rmi -f $IMAGE; fi
-
-docker tag $NEWIMAGEID grasehotspot/demo:latest
+# Cleanup dangling images
+docker rmi $(docker images -f "dangling=true" -q)
 
 ./new_container
