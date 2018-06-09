@@ -1,0 +1,14 @@
+version: "3.0"
+
+services:
+  grasedemo:
+    build: .
+    restart: always
+    networks:
+      - web
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:demo.grasehotspot.org"
+      - "traefik.port=80"
+      - "whiteitsolutions.type=grase-demo"
