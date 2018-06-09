@@ -9,6 +9,10 @@ services:
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
-      - "traefik.frontend.rule=Host:demo.grasehotspot.org"
+      - "traefik.frontend.rule=Host:demo.grasehotspot.org,www.demo.grasehotspot.org"
       - "traefik.port=80"
       - "whiteitsolutions.type=grase-demo"
+
+networks:
+    web:
+        external: true
