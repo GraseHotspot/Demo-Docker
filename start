@@ -5,4 +5,4 @@ sleep 2
 wget -q http://127.0.0.1/grase/radmin/cron.php -O -
 mysql -u root -pgrasesql radmin < /root/demo.sql
 mysql -u root -pgrasesql radius < /root/overflowdata.sql
-/bin/bash
+sleep infinity
