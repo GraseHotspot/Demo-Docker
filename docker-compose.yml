@@ -1,4 +1,4 @@
-version: "3.0"
+version: "3.6"
 
 services:
   grasedemo:
@@ -6,13 +6,34 @@ services:
     restart: always
     networks:
       - web
+      - grasedb
     labels:
       - "traefik.docker.network=web"
       - "traefik.enable=true"
       - "traefik.frontend.rule=Host:demo.grasehotspot.org,www.demo.grasehotspot.org"
       - "traefik.port=80"
       - "whiteitsolutions.type=grase-demo"
+    depends_on:
+       - mysql
+
+  mysql:
+    image: mariadb
+    networks:
+      - grasedb
+    volumes:
+      - ./db_initial:/docker-entrypoint-initdb.d/
+    environment:
+      - MYSQL_ROOT_PASSWORD=dbrootpw
+      - MYSQL_DATABASE=radius
+      - MYSQL_USER=grase
+      - MYSQL_PASSWORD=grase
+    healthcheck:
+      test: ["CMD", "echo 'SELECT version();'| mysql"]
+      timeout: 60s
+      retries: 10
+
 
 networks:
+    grasedb:
     web:
         external: true

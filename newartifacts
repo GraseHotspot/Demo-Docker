@@ -1,0 +1,6 @@
+rm -rf artifacts.zip artifacts
+wget https://gitlab.com/grase/grase-www-portal/builds/artifacts/symfony4/download?job=bionic-all -O artifacts.zip
+unzip artifacts.zip
+wget https://gitlab.com/grase/grase-conf-apache2/builds/artifacts/symfony4/download?job=bionic-all -O artifacts.zip
+unzip artifacts.zip
+

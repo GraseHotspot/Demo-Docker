@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM ubuntu:18.04
 MAINTAINER Tim White
 
 #COPY sources.list /etc/apt/sources.list
@@ -20,28 +20,34 @@ MAINTAINER Tim White
 # Some Environment Variables
 #ENV    DEBIAN_FRONTEND noninteractive
 
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y less vim gnupg2
+
 COPY grase-repo_1.7_all.deb /tmp/
 COPY graseselections /tmp/
 
 RUN debconf-set-selections /tmp/graseselections
 RUN dpkg -i /tmp/grase-repo_1.7_all.deb
 RUN sed -i 's/\/packages/\/nightly.packages/' /etc/apt/sources.list.d/grasehotspot.list
-#RUN echo deb http://localpackages/$GRASERELEASE/ purewhite main > /etc/apt/sources.list.d/grasehotspot.list
 
-RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server less vim
 
 ADD http://nightly.packages.grasehotspot.org/dists/purewhite/Release /tmp/
 RUN apt-get update
-RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal grase-conf-freeradius coova-chilli
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php php-cli mysql-client wget iproute2 apache2 libapache2-mod-php dbconfig-common php-mysql dbconfig-no-thanks php-intl
+#RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal grase-conf-freeradius coova-chilli
+COPY artifacts/ /tmp/artifacts/
+RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/artifacts/*.deb
 
-RUN echo 'RedirectMatch ^/$ https://demo.grasehotspot.org/grase/radmin/' > /etc/apache2/conf.d/index-redirect.conf
+RUN echo 'RedirectMatch ^/$ https://demo.grasehotspot.org/grase/radmin/' > /etc/apache2/conf-available/index-redirect.conf
+RUN a2enconf index-redirect
+
+# This is only needed until dbconfig-common handles it
+RUN echo 'DATABASE_URL=mysql://grase:grase@mysql:3306/radius' > /usr/share/grase/symfony4/.env.local
+RUN echo 'APP_ENV=prod' >> /usr/share/grase/symfony4/.env.local
 
 COPY start /root/
-COPY demo.sql /root/
-COPY overflowdata.sql /root/
 
 CMD /root/start
-
+# TODO lots of this can be split into multiple images with docker-compose now
 EXPOSE 80
 
