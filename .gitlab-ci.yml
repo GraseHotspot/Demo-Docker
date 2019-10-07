@@ -1,0 +1,13 @@
+
+stages:
+  - build
+  - release
+
+services:
+  - docker:19.03.1-dind
+image: docker:19.03.1
+
+build:
+  script:
+    - ./newartifacts
+    - docker build .
