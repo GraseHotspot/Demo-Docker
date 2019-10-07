@@ -9,6 +9,7 @@ image: docker:19.03.1
 
 
 build:
+  stage: build
   script:
     - ./newartifacts
     - docker build .
