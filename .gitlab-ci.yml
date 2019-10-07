@@ -12,4 +12,5 @@ build:
   stage: build
   script:
     - ./newartifacts
-    - docker build .
+    - docker build -t registry.gitlab.com/grase/demo-docker/dev:latest .
+    - docker push registry.gitlab.com/grase/demo-docker/dev:latest
