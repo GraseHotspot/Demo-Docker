@@ -38,7 +38,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php php-cli mysql-client w
 COPY artifacts/ /tmp/artifacts/
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/artifacts/*.deb
 
-RUN echo 'RedirectMatch ^/$ https://demo.grasehotspot.org/grase/radmin/' > /etc/apache2/conf-available/index-redirect.conf
+RUN echo 'RedirectMatch ^/$ https://devdemo.grasehotspot.org/grase/radmin/' > /etc/apache2/conf-available/index-redirect.conf
 RUN a2enconf index-redirect
 
 # This is only needed until dbconfig-common handles it
