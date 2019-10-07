@@ -13,5 +13,6 @@ done
 #mysql -u root -pgrasesql radius < /root/overflowdata.sql
 /usr/share/grase/symfony4/bin/console doctrine:migrations:migrate --no-interaction
 /usr/share/grase/symfony4/bin/console grase:settings-validate
+/usr/share/grase/symfony4/bin/console grase:demo
 echo "Entering sleep loop. Webserver should be running"
 sleep infinity
