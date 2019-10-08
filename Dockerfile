@@ -33,7 +33,7 @@ RUN sed -i 's/\/packages/\/nightly.packages/' /etc/apt/sources.list.d/grasehotsp
 
 ADD http://nightly.packages.grasehotspot.org/dists/purewhite/Release /tmp/
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php php-cli mysql-client wget iproute2 apache2 libapache2-mod-php dbconfig-common php-mysql dbconfig-no-thanks php-intl
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y php php-cli mysql-client wget iproute2 apache2 libapache2-mod-php dbconfig-common php-mysql dbconfig-no-thanks php-intl php-xml
 #RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal grase-conf-freeradius coova-chilli
 COPY artifacts/ /tmp/artifacts/
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/artifacts/*.deb
