@@ -39,6 +39,7 @@ COPY artifacts/ /tmp/artifacts/
 RUN DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/artifacts/*.deb
 
 RUN echo 'RedirectMatch ^/$ https://devdemo.grasehotspot.org/grase/' > /etc/apache2/conf-available/index-redirect.conf
+RUN sed -i '/memory_limit/cmemory_limit = 256M' /etc/php/*/apache2/php.ini
 RUN a2enconf index-redirect
 
 # This is only needed until dbconfig-common handles it
