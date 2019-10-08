@@ -14,5 +14,6 @@ done
 /usr/share/grase/symfony4/bin/console doctrine:migrations:migrate --no-interaction
 /usr/share/grase/symfony4/bin/console grase:settings-validate
 /usr/share/grase/symfony4/bin/console grase:demo
+/usr/share/grase/symfony4/bin/console cache:warmup
 echo "Entering sleep loop. Webserver should be running"
 sleep infinity
