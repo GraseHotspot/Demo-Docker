@@ -11,9 +11,9 @@ done
 #mysql -u root -pgrasesql radmin < /root/demo.sql
 #echo "create database radius;" | mysql -u root -pgrasesql radmin
 #mysql -u root -pgrasesql radius < /root/overflowdata.sql
-su -u www-data /usr/share/grase/symfony4/bin/console doctrine:migrations:migrate --no-interaction
-su -u www-data /usr/share/grase/symfony4/bin/console grase:settings-validate
-su -u www-data /usr/share/grase/symfony4/bin/console grase:demo
-su -u www-data /usr/share/grase/symfony4/bin/console cache:warmup
+su www-data -c /usr/share/grase/symfony4/bin/console doctrine:migrations:migrate --no-interaction
+su www-data -c /usr/share/grase/symfony4/bin/console grase:settings-validate
+su www-data -c /usr/share/grase/symfony4/bin/console grase:demo
+su www-data -c /usr/share/grase/symfony4/bin/console cache:warmup
 echo "Entering sleep loop. Webserver should be running"
 sleep infinity
