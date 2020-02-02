@@ -1,1 +1,1 @@
-GRANT ALL PRIVILEGES ON `radmin`.* TO 'grase'@'%';
+GRANT ALL PRIVILEGES ON `radius`.* TO 'grase'@'%';
