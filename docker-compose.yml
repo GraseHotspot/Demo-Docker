@@ -11,9 +11,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.services.grase-demo-3.loadbalancer.server.port=80"
       - "traefik.http.routers.grase-demo-3.rule=Host(`demo.grasehotspot.org`)"
-      - "traefik.http.routers.grase-demo-3.entrypoints=websecure"
+      - "traefik.http.routers.grase-demo-3.entrypoints=websecure,web"
       - "traefik.http.routers.grase-demo-3.tls=true"
       - "traefik.http.routers.grase-demo-3.tls.certresolver=default"
+      - "traefik.http.middlewares.grase-demo-3-redirectscheme.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.grase-demo-3-redirectscheme.redirectscheme.permanent=true"
+      - "traefik.http.routers.grase-demo-3.middlewares=grase-demo-3-redirectscheme@docker"
       - "whiteitsolutions.type=grase-demo"
 
 networks:
