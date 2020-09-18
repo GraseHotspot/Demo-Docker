@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 MAINTAINER Tim White
 
 #COPY sources.list /etc/apt/sources.list
@@ -35,6 +35,7 @@ ADD http://nightly.packages.grasehotspot.org/dists/purewhite/Release /tmp/
 RUN apt-get update
 RUN /etc/init.d/mysql start && DEBIAN_FRONTEND=noninteractive apt-get install -y grase-www-portal grase-conf-freeradius coova-chilli
 
+RUN mkdir /etc/apache2/conf.d/
 RUN echo 'RedirectMatch ^/$ https://demo.grasehotspot.org/grase/radmin/' > /etc/apache2/conf.d/index-redirect.conf
 
 COPY start /root/
